@@ -1,14 +1,14 @@
 package Seminar1;
 
-import Seminar1.Client.Client;
-import Seminar1.Server.Server;
+import Seminar1.Client.ClientWindow;
+import Seminar1.Server.ServerWindow;
 
 public class Main {
     public static void main(String[] args) {
-       Server server = new Server();
+       ServerWindow server = new ServerWindow();
 
-       Client client1 = new Client("client1", server);
-       Client client2 = new Client("client2", server);
+       ClientWindow client1 = new ClientWindow("client1", server);
+       ClientWindow client2 = new ClientWindow("client2", server);
 
 
 
