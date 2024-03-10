@@ -1,6 +1,6 @@
 package Seminar1.Client;
 
-import Seminar1.Server.ServerController;
+import Seminar1.Server.IServer;
 import Seminar1.Server.ServerWindow;
 
 import javax.swing.*;
@@ -12,6 +12,7 @@ public class ClientWindow extends JFrame {
     private String oldNick = "0";
     private boolean b = true;
     private String name;
+    private IServer iServer;
 
 
     private static final int WINDOW_HEIGHT = 400; //высота окна
@@ -62,7 +63,7 @@ public class ClientWindow extends JFrame {
             String jTextFieldMiddleText = jTextFieldMiddle.getText();
             server.sendMessage(jTextFieldMiddleText, this);
             try {
-                server.Message(jTextFieldMiddleText, getNew_Nick());
+                server.Message(jTextFieldMiddleText, getNew_Nick(),iServer);
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
@@ -94,7 +95,7 @@ public class ClientWindow extends JFrame {
                     jTextAreaTop.append("Вы вышли из чата, удачи!" + "\n");
                     setB(true);
                     setOld_Nick(getNew_Nick());
-                    server.Write(this, getNew_Nick(), false);
+                    server.Write(this, getNew_Nick(), false,iServer);
                     server.removeClient(this);
                     server.printBD();
                 } catch (IOException ex) {
@@ -116,9 +117,9 @@ public class ClientWindow extends JFrame {
 
     void Change_Nick() throws IOException {
         if (getOld_Nick().equals("0")) {
-            server.ChangeNick(this, "0", getNew_Nick());
+            server.ChangeNick(this, "0", getNew_Nick(),iServer);
         } else {
-            server.ChangeNick(this, getOld_Nick(), getNew_Nick());
+            server.ChangeNick(this, getOld_Nick(), getNew_Nick(),iServer);
         }
     }
 

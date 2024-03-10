@@ -23,7 +23,6 @@ public class ServerWindow extends JFrame{
     JButton jButtonFooterLeft = new JButton();
     JButton jButtonFooterRight = new JButton();
     JButton jButtonFooterMiddle = new JButton();
-    ServerController serverController = new ServerController();
 
 
 
@@ -77,29 +76,29 @@ public class ServerWindow extends JFrame{
 
         setVisible(true);
     }
-    public void Write(ClientWindow client, String nick, boolean flag) throws IOException {
+    public void Write(ClientWindow client, String nick, boolean flag, IServer iServer) throws IOException {
         if (flag) {
             jTextAreaTop.append(nick + ": присоединился к чату" + "\n");
-            serverController.getiServer().toWriteInFileLog(client.getName() + ": присоединился к чату" + "\n");
+            iServer.toWriteInFileLog(client.getName() + ": присоединился к чату" + "\n");
         }
         else {
             jTextAreaTop.append(nick + ": отсоединился от чата." + "\n");
-            serverController.getiServer().toWriteInFileLog(nick + ": отсоединился от чата." + "\n");
+            iServer.toWriteInFileLog(nick + ": отсоединился от чата." + "\n");
         }
     }
 
-    public void ChangeNick(ClientWindow client, String oldNick, String newNick) throws IOException {
+    public void ChangeNick(ClientWindow client, String oldNick, String newNick, IServer iServer) throws IOException {
         if (oldNick.equals("0")){
             jTextAreaTop.append(client.getName() + " Зарегистрировался под ником: [" + newNick + "]\n");
-            serverController.getiServer().toWriteInFileLog(client.getName() + " Зарегистрировался под ником: [" + newNick + "]\n");
+            iServer.toWriteInFileLog(client.getName() + " Зарегистрировался под ником: [" + newNick + "]\n");
         }else{
             jTextAreaTop.append(client.getName() + " Сменил ник с ["+ oldNick +"] на [" + newNick + "]\n");
-            serverController.getiServer().toWriteInFileLog(client.getName() + " Зарегистрировался под ником: [" + newNick + "]\n");
+            iServer.toWriteInFileLog(client.getName() + " Зарегистрировался под ником: [" + newNick + "]\n");
         }
     }
-    public void Message(String text, String newNick) throws IOException {
+    public void Message(String text, String newNick, IServer iServer) throws IOException {
         jTextAreaTop.append(newNick + " : [" + text + "]\n");
-        serverController.getiServer().toWriteInFileLog(newNick + " : [" + text + "]\n");
+        iServer.toWriteInFileLog(newNick + " : [" + text + "]\n");
     }
     public void printBD() throws IOException {
         jTextAreaTopLose.setText(null);

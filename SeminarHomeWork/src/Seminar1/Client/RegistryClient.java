@@ -1,5 +1,6 @@
 package Seminar1.Client;
 
+import Seminar1.Server.IServer;
 import Seminar1.Server.ServerController;
 import Seminar1.Server.ServerWindow;
 
@@ -11,6 +12,7 @@ public class RegistryClient extends JFrame{
     private boolean b;
     private String nick;
     private ServerWindow serverWindow;
+    private IServer iServer;
     private final ClientWindow clientWindow;
     private static final int WINDOW_HEIGHT = 130; //высота окна
     private static final int WINDOWS_WIDTH = 250; //ширина окна
@@ -78,7 +80,7 @@ public class RegistryClient extends JFrame{
     }
 
     public void WriteNickServer(String name,boolean flag) throws IOException {
-        serverWindow.Write(clientWindow,name,true);
+        serverWindow.Write(clientWindow,name,true,iServer);
     }
 
     public boolean isB() {
