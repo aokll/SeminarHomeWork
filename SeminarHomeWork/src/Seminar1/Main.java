@@ -9,8 +9,5 @@ public class Main {
 
        ClientWindow client1 = new ClientWindow("client1", server);
        ClientWindow client2 = new ClientWindow("client2", server);
-
-
-
     }
 }
