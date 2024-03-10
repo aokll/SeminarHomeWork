@@ -4,8 +4,7 @@ public class FirstClass implements IFirst{
 
     private ISecond iSecond;
     public FirstClass() {
-        this.iSecond = new SecondClass();
-    }
+        this.iSecond = new SecondClass();}
 
     @Override
     public String printFirst() {
